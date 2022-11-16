@@ -5,6 +5,7 @@ import time
 
 arduino = serial.Serial(port='COM3', baudrate = 9600, timeout=0.1)
 cupSet = True
+start = 0
 
 while True:
     read = arduino.readline()
@@ -18,4 +19,6 @@ while True:
         else: 
             cupSet = True
             pyautogui.press('space')
-            pyautogui.press('p')
+            start = time.time()
+    if time.time() - start > 10000:
+        pyautogui.press('p')
